@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Prevent horizontal scroll bleed on mobile viewports */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Accessible focus indicators for keyboard navigation */
+  :focus-visible {
+    outline: 3px solid #10b981;
+    outline-offset: 2px;
+  }
+
+  /* Form controls touch targets: at least 44px height to prevent iOS zoom & allow easy touch */
+  input, select, textarea, button {
+    font-size: 1rem; /* >= 16px prevents iOS Safari auto-zoom on input focus */
+  }
+
+  /* Reduced motion preference respect */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Accessibility High Contrast Mode support */
+body.high-contrast {
+  filter: contrast(125%);
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast .bg-white {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.high-contrast .text-slate-600,
+body.high-contrast .text-slate-500 {
+  color: #e2e8f0 !important;
+}
+
+/* Leaflet map mobile container styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  z-index: 10;
+}
+
+/* Touch friendly custom map marker styling */
+.custom-touch-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  touch-action: manipulation;
+}
